@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TravelToEurope</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="keys">
+    <div data-key="81" class="key">
+      <kbd> Q </kbd>
+    </div>
+    <div data-key="87" class="key">
+      <kbd> W </kbd>
+    </div>
+    <div data-key="69" class="key">
+      <kbd> E </kbd>
+    </div>
+    <div data-key="82" class="key">
+      <kbd> R </kbd>
+    </div>
+    <div data-key="84" class="key">
+      <kbd> T </kbd>
+    </div>
+    <div data-key="89" class="key">
+      <kbd> Y </kbd>
+    </div>
+    <div data-key="85" class="key">
+      <kbd> U </kbd>
+    </div>
+    <div data-key="73" class="key">
+      <kbd> I </kbd>
+    </div>
+  </div>
+  <div class="keys">
+    <div class="key_wide">
+      <kbd> NAHRÁVAJ </kbd>
+    </div>
+    <div class="key_wide">
+      <kbd> PREHRAJ </kbd>
+    </div>
+  </div>
+
+  <audio data-key="81" src="sounds/clap.wav"></audio>
+  <audio data-key="87" src="sounds/hihat.wav"></audio>
+  <audio data-key="69" src="sounds/kick.wav"></audio>
+  <audio data-key="82" src="sounds/openhat.wav"></audio>
+  <audio data-key="84" src="sounds/boom.wav"></audio>
+  <audio data-key="89" src="sounds/ride.wav"></audio>
+  <audio data-key="85" src="sounds/snare.wav"></audio>
+  <audio data-key="73" src="sounds/tom.wav"></audio>
+
+<script>
+  window.addEventListener('keydown', function(a) {
+    const audio = document.querySelector(`audio[data-key="${a.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${a.keyCode}"]`);
+    console.log(key);
+    if(!audio) return;
+    audio.currentTime = 0;
+    audio.play();
+    key.classList.add('playing');
+  });
+
+  function removeTransition(event) {
+    if(event.propertyName !== 'transform') return;
+    this.classList.remove('playing');
+  }
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend',removeTransition));
+
+</script>
+
+</body>
+</html>
