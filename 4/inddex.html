@@ -13,9 +13,42 @@
     { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
     { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
   ];
+  const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
+
   const filtered = inventors.reduce((filtrik, inventor) => {
     if (inventor.year >= 1500 && inventor.year <= 1599) filtrik.push(inventor)
     return filtrik
   }, [])
   console.table(filtered)
+
+  const names = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+  console.log(names)
+
+  const sorted = inventors.sort((a, b) => a.year > b.year ? 1 : -1)
+  console.table(sorted)
+
+  const ageSum = inventors.reduce((total, inventor) => {
+    return total + (inventor.passed - inventor.year)
+  }, 0)
+
+  console.log(ageSum)
+
+  const oldest = inventors.sort((a, b) => a.passed - a.year > b.passed - b.year ? -1 : 1)
+  console. table(oldest)
+
+  const alphabetical = people.sort((a, b) => {
+    const [last, first] = a.split(', ')
+    console.log(last,first)
+  } )
+
+  const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
+  const vehicles = data.reduce(function(obj, item) {
+    if (!obj[item]){
+      obj[item]=0
+    }
+    obj[item]++
+    return obj
+  }, {})
+  console.log(vehicles)
+
 </script>
